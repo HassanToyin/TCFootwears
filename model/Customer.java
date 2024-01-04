@@ -27,6 +27,18 @@ public class Customer {
     @Column( name = "phoneNumber", nullable = false)
     private String phoneNumber;
 
+    public void setPhoneNumber(String phoneNumber) {
+    }
+
+    public void setAddress(String address) {
+    }
+
+    public void setName(String name) {
+    }
+
+    public void setEmail(String email) {
+    }
+
     //@OneToMany(mappedBy = "customer")
     //private List<Order> orders;
 }

@@ -1,15 +1,12 @@
 package com.Ecommerces.TcFootwears.service;
 
 import com.Ecommerces.TcFootwears.dto.TcFootwearDto;
-import com.Ecommerces.TcFootwears.model.Order;
 import com.Ecommerces.TcFootwears.model.TcFootwear;
 import com.Ecommerces.TcFootwears.repository.TcFootwearRepo;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -36,8 +33,8 @@ public class TcFootwearService {
         return (ArrayList<TcFootwear>) tcFootwearRepo.findAll();
     }
 
-    public TcFootwear updateTcFootwear(TcFootwearDto tcFootwearDto){
-        TcFootwear tcFootwear = tcFootwearRepo.findById().orElseThrow(() -> new RuntimeException("TcFootwear not found"));
+    public TcFootwear updateTcFootwear(TcFootwearDto tcFootwearDto, Long id){
+        TcFootwear tcFootwear = tcFootwearRepo.findById(id).orElseThrow(() -> new RuntimeException("TcFootwear not found"));
 
         tcFootwear.setName(tcFootwearDto.getName());
         tcFootwear.setDescription(tcFootwearDto.getDescription());

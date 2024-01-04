@@ -10,4 +10,7 @@ public class TcFootwearDto {
     private Double price;
     private Integer stockQuantity;
 
+    public String setStockQuantity() {
+        return String.valueOf(stockQuantity);
+    }
 }

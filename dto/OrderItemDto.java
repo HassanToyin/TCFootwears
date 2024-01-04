@@ -1,18 +1,17 @@
 package com.Ecommerces.TcFootwears.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
+import lombok.NonNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+public class OrderItemDto {
 
-public class OrderRequestDto {
-    private Long customerId;
-    private ArrayList<OrderItemDto> tcFootwear;
+    @NonNull private Long tcFootwearId;
+    @NonNull private Integer quantity;
+    private Double subtotal;
 
 }

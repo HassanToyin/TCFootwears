@@ -1,5 +1,6 @@
 package com.Ecommerces.TcFootwears.controller;
 
+import com.Ecommerces.TcFootwears.dto.OrderRequestDto;
 import com.Ecommerces.TcFootwears.dto.TcFootwearDto;
 import com.Ecommerces.TcFootwears.model.TcFootwear;
 import com.Ecommerces.TcFootwears.service.OrderService;
@@ -24,21 +25,29 @@ public class TcFootwearController {
     private final TcFootwearService tcFootwearService;
 
     @PostMapping
-    public <TcFootwearRequestDto> ResponseEntity createTcFootwear(@RequestBody TcFootwearRequestDto tcFootwearRequestDto) {
-        TcFootwearService createdTcFootwear = getAllTcFootwear (TcFootwearRequestDto);
-        return new RequestEntity<>(TcFootwearService, HttpStatus.CREATED);
+    public ResponseEntity<TcFootwear> createTcFootwear(@RequestBody TcFootwearDto tcFootwearDto) {
+        TcFootwear createdTcFootwear = tcFootwearService.createTcFootwear(tcFootwearDto);
+        return new ResponseEntity<>(createdTcFootwear, HttpStatus.CREATED);
     }
 
     @GetMapping("/api")
     public ResponseEntity<List<TcFootwear>> getAllTcFootwear() {
-        List TcFootwear = TcFootwearService.getAllTcFootwear();
-        return new ResponseEntity<>(TcFootwear, HttpStatus.OK);
+        List<TcFootwear> tcFootwears = tcFootwearService.getAllTcFootwear();
+        return new ResponseEntity<>(tcFootwears, HttpStatus.OK);
 
     }
 
+    @GetMapping("/api")
+    public ResponseEntity<TcFootwear> getTcFootwearsById(@PathVariable Long id){
+        TcFootwear tcFootwear = tcFootwearService.getTcFootwearById(id);
+        return new ResponseEntity<>(tcFootwear, HttpStatus.OK) ;
+
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<TcFootwear> updateTcFootwear(@RequestBody TcFootwearDto tcFootwearDto, @PathVariable Long id){
-        TcFootwear updatedTcFootwear = TcFootwearService.getAllTcFootwear(tcFootwearService, Id);
+        TcFootwear updatedTcFootwear = tcFootwearService.updateTcFootwear(tcFootwearDto, id);
         return new ResponseEntity<>(updatedTcFootwear, HttpStatus.OK);
 
     }
